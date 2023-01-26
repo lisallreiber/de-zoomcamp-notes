@@ -10,6 +10,7 @@ services:
       - "./ny_taxi_postgres_data:/var/lib/postgresql/data:rw"
     ports:
       - "5432:5432"
+    container_name: pg-database
     networks:
       - internal
   pgadmin:
@@ -23,11 +24,13 @@ services:
         target: /var/lib/pgadmin
     ports:
       - "8080:80"
+    container_name: pg-admin
     networks:
       - internal
 
 volumes:
   pgadmin_data:
+    name: pgadmin_data
 
 networks:
   internal:
