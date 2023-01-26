@@ -322,16 +322,126 @@ SELECT
 FROM
   zones;
 
+# add limit to returned rows
+SELECT 
+  *
+FROM
+  yellow_taxi_data
+LIMIT 100;
+
+# now we want to do a join 
+
+# notes
+# -reg. column names: a column name needs to be in quotes it its written with capital letters
+
+## option 1: inner join with where
+
+```sql
+SELECT 
+	tpep_pickup_datetime,	
+	tpep_dropoff_datetime,
+	total_amount,
+	-- concat adds values of multiple comluns together
+	CONCAT(zones_pickup."Borough", ' / ', zones_pickup."Zone") AS "pickup_loc",
+	CONCAT(zones_dropoff."Borough", ' / ', zones_dropoff."Zone") AS "dropoff_loc"
+FROM
+  -- use yellow_taxi_data as taxi in this query
+  yellow_taxi_data taxi,
+  -- this selects the zones tables once as zones_pickup 
+  zones zones_pickup,
+  -- and once as zones_dropoff
+  zones zones_dropoff
+-- this part is where the join happens, its more of a filter than a join
+WHERE
+  taxi."PULocationID" = zones_pickup."LocationID" AND
+  taxi."DOLocationID" = zones_dropoff."LocationID"
+LIMIT 100;
+```
+
+# option 1.2: inner join with join
+```sql
+SELECT 
+	tpep_pickup_datetime,	
+	tpep_dropoff_datetime,
+	total_amount,
+	-- concat adds values of multiple comluns together
+	CONCAT(zones_pickup."Borough", ' / ', zones_pickup."Zone") AS "pickup_loc",
+	CONCAT(zones_dropoff."Borough", ' / ', zones_dropoff."Zone") AS "dropoff_loc"
+FROM
+  yellow_taxi_data taxi JOIN zones zones_pickup
+  	ON taxi."PULocationID" = zones_pickup."LocationID"
+  JOIN zones zones_dropoff
+  	ON "DOLocationID" = zones_dropoff."LocationID"
+LIMIT 100;
+```
+
+# option 3
 
 
+# question: are there empty pickup/dropoff locations
 
+```sql
+SELECT 
+	tpep_pickup_datetime,	
+	tpep_dropoff_datetime,
+	total_amount,
+	"PULocationID",
+	"DOLocationID"
+FROM
+  yellow_taxi_data taxi 
+WHERE "DOLocationID" is NULL
+LIMIT 100;
+```
 
+# question: are there any ID's in Zones that are not present in the taxi tripos dataset?
 
+```sql
+SELECT 
+	tpep_pickup_datetime,	
+	tpep_dropoff_datetime,
+	total_amount,
+	"PULocationID",
+	"DOLocationID"
+FROM
+  yellow_taxi_data taxi 
+--we add a select statement after the NOT IN
+WHERE "DOLocationID" NOT IN (SELECT "LocationID" FROM zones)
+LIMIT 100;
+```
 
+# question: what is the day with the largest amount of trips?
 
+```sql
+SELECT 
+	--DATE_TRUNC('DAY', tpep_pickup_datetime),
+	CAST(lpep_pickup_datetime AS DATE) AS "day",
+	COUNT(1) as "count"
+FROM
+  green_taxi_data taxi
+--WHERE "day" = '2019-01-15'
+GROUP BY 
+	CAST(lpep_pickup_datetime AS DATE)
+ORDER BY "count" DESC;
+```
 
+# adding some more aggregations
 
+```sql
+SELECT 
+	--DATE_TRUNC('DAY', tpep_pickup_datetime),
+	CAST(lpep_pickup_datetime AS DATE) AS "day",
+	COUNT(1) as "count",
+	MAX(total_amount),
+	MAX(passenger_count)
+FROM
+  green_taxi_data taxi
+--WHERE "day" = '2019-01-15'
+GROUP BY 
+	CAST(lpep_pickup_datetime AS DATE)
+ORDER BY "count" DESC;
+```
 
+# group by multiple fields
 #-------------------------------------------------------------
 # Code Along/Notes: 1.3.1 Intro to Terrafrom Concepts and GCP Pre-Requisites
 #-------------------------------------------------------------
