@@ -3,11 +3,10 @@
 
 # DE Zoomcamp: Upload Green Taxi data to Postgres
 
-import os
-import argparse
-import pandas as pd
-
-from time import time
+import os                            # to run shell commands
+import argparse                      # to parse arguments
+import pandas as pd                  # to wrangle data
+from time import time                # to measure time
 from sqlalchemy import create_engine # to help with named arguments
 
 
@@ -29,7 +28,7 @@ def main(params):
         csv_name = 'taxi_data.csv'
 
     # step01: download data
-    # ----------------------------
+    # ---------------------------------
     print(f'step01 - download data into {csv_name}: start...')
 
     os.system(f"wget {url} -O {csv_name}")
@@ -37,6 +36,7 @@ def main(params):
     print(f'step1 - download data into {csv_name}: finished')
 
     # step02: import data
+    # ---------------------------------
     print(f'step02 - wrangle data: start...')
 
     df_iter = pd.read_csv(csv_name, iterator=True, chunksize=100000)
@@ -47,11 +47,13 @@ def main(params):
     
     print(f'step02 - wrangle data: finished')
 
-    # step02: connect to postgres
+    # step03: connect to postgres
+    # ---------------------------------
     engine = create_engine(f'postgresql://{user}:{password}@{host}:{port}/{db_name}')
 
-    # step03: writing the data into the databas in batches
-    print(f'step03 - ingest data into postgres: start...')
+    # step04: writing the data into the databas in batches
+    # ---------------------------------
+    print(f'step04 - ingest data into postgres: start...')
     # first batch
     df.head(n=0).to_sql(name=tbl_name, con=engine, if_exists='replace')
     df.to_sql(name=tbl_name, con=engine, if_exists='append')
@@ -61,20 +63,15 @@ def main(params):
 
         try:
             t_start = time()
-
             df = next(df_iter)
-
             df.lpep_pickup_datetime = pd.to_datetime(df.lpep_pickup_datetime)
             df.lpep_dropoff_datetime = pd.to_datetime(df.lpep_dropoff_datetime)
-
             df.to_sql(name=tbl_name, con=engine, if_exists='append')
-
             t_end = time()
-
             print('inserted another chunk, took %.3f seconds' % (t_end - t_start))
 
         except StopIteration:
-            print("step03 - ingest data into postgres: finished")
+            print("step04 - ingest data into postgres: finished")
             break
 
 if __name__ == '__main__':
