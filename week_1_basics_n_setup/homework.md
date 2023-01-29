@@ -253,9 +253,9 @@ SELECT
 FROM
   green_taxi_data
 WHERE 
-	date(lpep_pickup_datetime)='2019-01-01' 
+  date(lpep_pickup_datetime)='2019-01-01' 
 GROUP BY 
-	1,2;
+  1,2;
 ```
 
 **output:**
