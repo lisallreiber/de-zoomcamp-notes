@@ -178,16 +178,15 @@ Remember that `lpep_pickup_datetime` and `lpep_dropoff_datetime` columns are in 
 **query:**
 ```sql
 SELECT
-	COUNT(1) as total_trips,
-	ROUND(SUM(total_amount)) AS total_amount,
-	SUM(passenger_count) AS total_passengers
+  COUNT(1) as total_trips,
+  ROUND(SUM(total_amount)) AS total_amount,
+  SUM(passenger_count) AS total_passengers
 FROM
   green_taxi_data
 WHERE 
-	date(lpep_pickup_datetime)='2019-01-15' AND
-	date(lpep_dropoff_datetime)='2019-01-15'
+  date(lpep_pickup_datetime)='2019-01-15' AND
+  date(lpep_dropoff_datetime)='2019-01-15'
 GROUP BY date(lpep_dropoff_datetime);
-
 ```
 
 **output:**
