@@ -198,7 +198,7 @@ GROUP BY date(lpep_dropoff_datetime);
 
 **✅ answer: 20530**
 
-## Question 4. Largest trip for each day
+## Question 4 - Largest trip for each day
 
 Which was the day with the largest trip distance
 Use the pick up time for your calculations.
@@ -235,7 +235,7 @@ LIMIT 5;
 
 **✅ answer: 2019-01-15**
 
-## Question 5. The number of passengers
+## Question 5 - The number of passengers
 
 In 2019-01-01 how many trips had 2 and 3 passengers?
  
@@ -272,7 +272,7 @@ GROUP BY
 
 **✅ answer: 2: 1282 ; 3: 254**
 
-## Question 6. Largest tip
+## Question 6 - Largest tip
 
 For the passengers picked up in the Astoria Zone which was the drop off zone that had the largest tip?
 We want the name of the zone, not the id.
@@ -327,7 +327,7 @@ LIMIT 5;
 - In your VM on GCP install Terraform. Copy the files from the course repo here to your VM.
 - Modify the files as necessary to create a GCP Bucket and Big Query Dataset.
 
-## Question 7. Creating Resources
+## Question 7 - Creating Resources
 After updating the `main.tf` and `variable.tf` files run: `terraform apply`
 Paste the output of this command into the homework submission form.
 
