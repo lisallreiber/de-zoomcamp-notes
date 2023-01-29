@@ -247,9 +247,9 @@ In 2019-01-01 how many trips had 2 and 3 passengers?
 **query:**
 ```sql
 SELECT
-	date(lpep_pickup_datetime) AS pickup_datetime,
-	passenger_count,
-	COUNT(1) AS total_passengers
+  date(lpep_pickup_datetime) AS pickup_datetime,
+  passenger_count, 
+  COUNT(1) AS total_passengers
 FROM
   green_taxi_data
 WHERE 
