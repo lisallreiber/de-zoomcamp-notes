@@ -211,9 +211,9 @@ Use the pick up time for your calculations.
 **query:**
 ```sql
 SELECT
-	date(lpep_pickup_datetime) AS pickup_date,
-	COUNT(1) as total_trips,
-    MAX(trip_distance) AS max_distance
+  date(lpep_pickup_datetime) AS pickup_date,
+  COUNT(1) as total_trips,
+  MAX(trip_distance) AS max_distance
 FROM
   green_taxi_data
 GROUP BY date(lpep_pickup_datetime)
@@ -225,13 +225,13 @@ LIMIT 5;
 
 **output:**
 
-| pickup_date | total_trips | max_distance |
-|-------------|-------------|--------------|
-| 2019-01-15  | 20689       | 117.99       |
-| 2019-01-18  | 22504       | 80.96        |
-| 2019-01-28  | 20342       | 64.27        |
-| 2019-01-10  | 23038       | 64.2         |
-| 2019-01-06  | 17799       | 60.91        |
+| pickup_date    | total_trips | max_distance |
+| -------------- | ----------- | ------------ |
+| **2019-01-15** | **20689**   | **117.99**   |
+| 2019-01-18     | 22504       | 80.96        |
+| 2019-01-28     | 20342       | 64.27        |
+| 2019-01-10     | 23038       | 64.2         |
+| 2019-01-06     | 17799       | 60.91        |
 
 **✅ answer: 2019-01-15**
 
