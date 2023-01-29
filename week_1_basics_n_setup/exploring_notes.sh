@@ -476,6 +476,7 @@ brew install hashicorp/tap/terraform
     gcloud auth application-default login
 
     # follow the re-directs and your local setup is authenticated with the cloud anvironment
+    # more info on web tokens: https://jwt.io/introduction/
 
 
 
@@ -492,6 +493,8 @@ brew install hashicorp/tap/terraform
 
 # connect to machine via ssh
 ssh -i ~/.ssh/id_gcp lisa@34.155.54.252
+# or 
+ssh de-zoomcamp
 
 # check out the machine
 htop
@@ -587,10 +590,10 @@ wget https://repo.anaconda.com/archive/Anaconda3-2022.10-Linux-x86_64.sh
     # now we need to connect it to the cloud but we cannot use the OAuth method 
     # instead we use the key file
     # again we export the ENV Variable
-    export GOOGLE_APPLICATION_CREDENTIALS="~/.GCP/dtc-de-375708-9120d1930b33.json"
+    export GOOGLE_APPLICATION_CREDENTIALS="~/.gc/dtc-de-375708-9120d1930b33.json"
 
     # now we use this file with 
-    gcloud auth activate-service-account --key-file=$GOOGLE_APPLICATION_CREDENTIALS
+  
 
         #debugging
         echo $GOOGLE_APPLICATION_CREDENTIALS
