@@ -38,11 +38,8 @@ def main(params):
 
     # step02: import data
     # ---------------------------------
-    df_iter = pd.read_csv(csv_name, iterator=True, chunksize=100000)
+    df_iter = pd.read_csv(csv_name, iterator=True, chunksize=100000, parse_dates=[1, 2])
     df = next(df_iter)
-
-    df.tpep_pickup_datetime = pd.to_datetime(df.tpep_pickup_datetime)
-    df.tpep_dropoff_datetime = pd.to_datetime(df.tpep_dropoff_datetime)
 
     # step03: connect to postgres
     # ---------------------------------
@@ -60,9 +57,6 @@ def main(params):
         try:
             t_start = time()
             df = next(df_iter)
-
-            df.tpep_pickup_datetime = pd.to_datetime(df.tpep_pickup_datetime)
-            df.tpep_dropoff_datetime = pd.to_datetime(df.tpep_dropoff_datetime)
 
             df.to_sql(name=tbl_name, con=engine, if_exists='append')
             t_end = time()
