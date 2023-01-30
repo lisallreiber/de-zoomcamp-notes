@@ -42,7 +42,30 @@ Week 2: Workflow Orchestration <!-- omit from toc -->
 
 ### 2.2.2 - Introduction to Prefect concepts
 
-* What is Prefect?
+* 00:00 What are the contents of the ingestion script?
+* [01:45](https://www.youtube.com/watch?v=cdtN6dhp708&t=94s) What is Prefect?
+  * Using python to write workflows
+* [02:00](https://www.youtube.com/watch?v=cdtN6dhp708&t=120s) Setting up a virtual envionment with conda
+* [02:50](https://www.youtube.com/watch?v=cdtN6dhp708&t=170s) Installing Prefect and Requirements
+* [03:30](https://www.youtube.com/watch?v=cdtN6dhp708&t=210s) Recap: 'ingest_data.py' and pgAdmin
+* [05:10](https://www.youtube.com/watch?v=cdtN6dhp708&t=310s) Why a scheduler is useful: transforming the script into a flow
+* [05:55](https://www.youtube.com/watch?v=cdtN6dhp708&t=355s) Prefect flow: What is it and how to add it?
+* [07:00](https://www.youtube.com/watch?v=cdtN6dhp708&t=420s) Prefect task: What is it and how to add it?
+* [08:52](https://www.youtube.com/watch?v=cdtN6dhp708&t=532s) Recap: transforming the script into a flow
+* [10:15](https://www.youtube.com/watch?v=cdtN6dhp708&t=615s) Transforming the script into ETL
+* [20:00](https://www.youtube.com/watch?v=cdtN6dhp708&t=1200s) Recap: creation of tasks
+* [22:20](https://www.youtube.com/watch?v=cdtN6dhp708&t=1340s) Othe Prefect options
+* [22:25](https://www.youtube.com/watch?v=cdtN6dhp708&t=1345s) Parameterizing the flow
+* [22:30](https://www.youtube.com/watch?v=cdtN6dhp708&t=1350s) Subflows
+* [25:00](https://www.youtube.com/watch?v=cdtN6dhp708&t=1500s) Prefect Orion / UI 
+* [27:20](https://www.youtube.com/watch?v=cdtN6dhp708&t=1640s) Blocks and collections
+* [28:41](https://www.youtube.com/watch?v=cdtN6dhp708&t=1721s) postgres-connector block
+* [29:25](https://www.youtube.com/watch?v=cdtN6dhp708&t=1765s) Prefect collections
+* [30:15](https://www.youtube.com/watch?v=cdtN6dhp708&t=1825s) Utilizing the SQLalchemy block
+* [34:15](https://www.youtube.com/watch?v=cdtN6dhp708&t=2040s) Closing remarks
+
+
+
 * Installing Prefect
 * Prefect flow
 * Creating an ETL
@@ -62,6 +85,8 @@ Week 2: Workflow Orchestration <!-- omit from toc -->
 ### 2.2.4 - From Google Cloud Storage to Big Query
 
 * Flow 2: From GCS to BigQuery
+
+
 
 :movie_camera: [Video](https://www.youtube.com/watch?v=Cx5jt-V5sgE&list=PL3MmuxUbc_hJed7dXYoJw8DoCuVHhGEQb&index=19)
 
