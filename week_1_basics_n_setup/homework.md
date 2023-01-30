@@ -80,10 +80,10 @@ Download this data and put it into Postgres (with jupyter notebooks or with a pi
 ## Set-up Process
 
 **Step1: Start Docker Network** 
-with Postgres and pgAdmin defined in the `docker-compose.yaml`
+with Postgres and pgAdmin defined in the [`docker-compose.yaml`](2_docker_sql/docker-compose.yaml)
 
 ```bash
-docker-compose -p"pg-network" up 
+docker-compose -p "pg-network" up 
 ```
 
 -> go to localhost:8080 and login to pgAdmin to check on the postgres db or
@@ -117,7 +117,7 @@ wget -nc https://github.com/DataTalksClub/nyc-tlc-data/releases/download/green/g
 wget -O "taxi_zone_lookup.csv" -nc https://s3.amazonaws.com/nyc-tlc/misc/taxi+_zone_lookup.csv
 ```
 
-**Step3: Open jupyter notebook** to check out the new dataset and test if we can use the same pipeline just with different parameters
+**Step3: Open jupyter notebook** to check out the new dataset and test if we can use the same pipeline just with different parameters ([Link here](2_docker_sql/ingest-data_green-taxi.ipynb))
 
 e.g. make sure that the data cleaning steps and column names are the same
 
@@ -139,28 +139,31 @@ jupyter notebook
 ```
 
 we have multiple options to deal with the new column names:
-- use a jupyter notebook to add the green taxi data ✅
+- ✅ use a [jupyter notebook](2_docker_sql/ingest-data_green-taxi.ipynb) to add the green taxi data
 - add an if else statement into the existing ingest-data.py that depends on thew tbl_name parameter (green_taxi vs yellow_taxi)
-- add a [ingest-data-green.py](2_docker_sql/ingest-data-green.py) script, adapt the [Dockerfile](2_docker_sql/Dockerfile) build an image with this one
-    ```bash
-    docker build -t ingest_taxi-data-green:v001 . 
-    ```
-    and 
-    ```bash
-    URL="https://github.com/DataTalksClub/nyc-tlc-data/releases/download/green/green_tripdata_2019-01.csv.gz"
+- add a [ingest-data-green.py](2_docker_sql/ingest-data-green.py) script, adapt the [Dockerfile](2_docker_sql/Dockerfile) and build an image with:
+  
+```bash
+docker build -t ingest_taxi-data-green:v001 . 
+```
 
-    docker run -it \
-    --name=ingest-taxi-data-green \
-    --network=pg-network \
-        ingest_taxi-data-green:v001 \
-        --user=root \
-        --password=root \
-        --host=pg-database \
-        --port=5432 \
-        --db_name=ny_taxi \
-        --tbl_name=green_taxi_data \
-        --url=${URL} 
-    ```
+and 
+
+```bash
+URL="https://github.com/DataTalksClub/nyc-tlc-data/releases/download/green/green_tripdata_2019-01.csv.gz"
+
+docker run -it \
+--name=ingest-taxi-data-green \
+--network=pg-network \
+    ingest_taxi-data-green:v001 \
+    --user=root \
+    --password=root \
+    --host=pg-database \
+    --port=5432 \
+    --db_name=ny_taxi \
+    --tbl_name=green_taxi_data \
+    --url=${URL} 
+```
 
 ## Question 3 - Count records 
 
