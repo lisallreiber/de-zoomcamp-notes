@@ -50,6 +50,7 @@ def main(params):
     # step03: connect to postgres
     # ---------------------------------
     engine = create_engine(f'postgresql://{user}:{password}@{host}:{port}/{db_name}')
+    print(f'step03 - connect to postgres: finished')
 
     # step04: writing the data into the databas in batches
     # ---------------------------------
