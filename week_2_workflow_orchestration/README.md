@@ -20,6 +20,9 @@ Week 2: Workflow Orchestration <!-- omit from toc -->
     - [step02: add tasks](#step02-add-tasks)
     - [step03: write out local parquet files](#step03-write-out-local-parquet-files)
   - [2.2.4 - From Google Cloud Storage to Big Query](#224---from-google-cloud-storage-to-big-query)
+    - [step 1: define flow and task1: web to gcs](#step-1-define-flow-and-task1-web-to-gcs)
+    - [step 2: add task 2: transform data](#step-2-add-task-2-transform-data)
+    - [step 3: add task 3: write to BigQuery](#step-3-add-task-3-write-to-bigquery)
   - [2.2.5 - Parametrizing Flow \& Deployments](#225---parametrizing-flow--deployments)
   - [2.2.6 - Schedules \& Docker Storage with Infrastructure](#226---schedules--docker-storage-with-infrastructure)
   - [2.2.7 - Prefect Cloud and Additional Resources](#227---prefect-cloud-and-additional-resources)
@@ -270,6 +273,9 @@ gcp_cloud_storage_bucket_block = GcsBucket.load("de-zoomcamp-gcs")
 
 :movie_camera: [Video](https://www.youtube.com/watch?v=Cx5jt-V5sgE&list=PL3MmuxUbc_hJed7dXYoJw8DoCuVHhGEQb&index=19)
 
+#### step 1: define flow and task1: web to gcs
+#### step 2: add task 2: transform data
+#### step 3: add task 3: write to BigQuery
 
 
 ### 2.2.5 - Parametrizing Flow & Deployments 
