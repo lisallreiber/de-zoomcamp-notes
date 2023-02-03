@@ -232,6 +232,36 @@ mkdir -p data/yellow
 
 :movie_camera: [Video](https://www.youtube.com/watch?v=W-rMz_2GwqQ&list=PL3MmuxUbc_hJed7dXYoJw8DoCuVHhGEQb&index=18)
 
+In order to load the data directly into Googe Cloud Storage, we create a new project **prefect-de-zoomcamp-376713** and a new storage bucket **prefect-de-zoomcamp_2**.
+
+then we add the gcs prefect blocks with 
+
+```bash
+prefect block register -m prefect_gcp
+```
+
+![Screenshot of Terminal Output after registerin the gcp block](../images/Screenshot%202023-02-03%20at%2015.03.12.png)
+
+
+now we configure the gcs bucket and gcs credentials blocks
+
+for the credentials we need to create a service account and download the json file.
+
+the service account gets the roles of 
+- BigQuery Admin
+- Storage Admin
+
+then we generate a JSON Key for the service account and downlaod the JSON (making sure that we don't save it in a public repo)
+
+the content of the key is what we paste in the setup section of the prefect gcs-credentials block
+
+once the blocks are configures in the orion UI, it gives out the code we can use to implement/use the blocks 
+
+```bash
+from prefect_gcp.cloud_storage import GcsBucket
+gcp_cloud_storage_bucket_block = GcsBucket.load("de-zoomcamp-gcs")
+````
+
 
 ### 2.2.4 - From Google Cloud Storage to Big Query
 
