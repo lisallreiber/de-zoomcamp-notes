@@ -120,8 +120,8 @@ pgcli -h localhost -p 5432 -u root -d ny_taxi  # the password will be asked in a
 #   -O flag tells it to save the file with the same name as the remote file.                       
 
 # step 3.2 download the data & copy it into current directory
-curl -o ~/Downloads/yellow_tripdata_2020-01csv.gz https://github.com/DataTalksClub/nyc-tlc-data/releases/download/yellow/yellow_tripdata_2020-01.csv.gz
-cp ~/Downloads/yellow_tripdata_2020-01.csv .  # cp to copy a file into the current dir
+curl -o ~/Downloads/yellow_tripdata_2021-01csv.gz https://github.com/DataTalksClub/nyc-tlc-data/releases/download/yellow/yellow_tripdata_2021-01.csv.gz
+cp ~/Downloads/yellow_tripdata_2021-01.csv .  # cp to copy a file into the current dir
 
 # alternative: download and unzip it directly into the current directory
 curl -LJO https://github.com/DataTalksClub/nyc-tlc-data/releases/download/yellow/yellow_tripdata_2021-01.csv.gz
