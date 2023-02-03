@@ -27,6 +27,9 @@ Week 2: Workflow Orchestration <!-- omit from toc -->
     - [Goal: parameterizing a flow script](#goal-parameterizing-a-flow-script)
     - [step1: adding parameters to the flow](#step1-adding-parameters-to-the-flow)
     - [step2: how to add a subflow](#step2-how-to-add-a-subflow)
+    - [Goal: deploying flows](#goal-deploying-flows)
+    - [step1: Deployment via CLI](#step1-deployment-via-cli)
+    - [step2: Deployment via Python](#step2-deployment-via-python)
   - [2.2.6 - Schedules \& Docker Storage with Infrastructure](#226---schedules--docker-storage-with-infrastructure)
   - [2.2.7 - Prefect Cloud and Additional Resources](#227---prefect-cloud-and-additional-resources)
 - [Code repository](#code-repository)
@@ -302,7 +305,45 @@ parameterizing a flow means that we can pass in parameters to the flow when we r
 
 How we add subflow to our script. Why? It enables us to have one flow that triggers one or many other flows. Those could also be determined by parameters. It is kind of like going one extraction layer of code up. Then we have code (parent flow) that triggers other code (subflow). 
 
+#### Goal: deploying flows
 
+so far we have been running the flows locally. Now we want to deploy the flows to a prefect agent. This way the flows can be run on a server and not only on our local machine.
+
+there are two ways to build a deployment. first option is through the CLI and the second option is through python. 
+
+[Deployment Documentation](https://docs.prefect.io/concepts/deployments/)
+
+#### step1: Deployment via CLI
+
+we start with building the deployment:
+- first we provide the path to the script and after the colon comes the entrypoint (in this case flow)
+- we need to provide the entrypoint flow, because in our script there are multiple flows defined
+
+```bash
+prefect deployment build 3_deployment/parameterized-flow.py:etl_parent_flow -n "Paramerized ETL"
+```
+
+Note: make sure you are in the same directory as the file, otherwise the .yaml file will be created from wherever you are calling the function from.
+
+e.g. this did not work ;)
+```bash
+prefect deployment build 3_deployment/parameterized-flow.py:etl_parent_flow -n "Paramerized ETL"
+```
+the command generates a yaml file with all the meta data.
+
+this can be adapted as needed. 
+
+then, we can apply the deploment with 
+
+```bash
+prefect deployment apply 3 
+```
+
+in the next step, we need to create an agent who will execute the deployment
+
+
+
+#### step2: Deployment via Python
 
 ### 2.2.6 - Schedules & Docker Storage with Infrastructure
 
