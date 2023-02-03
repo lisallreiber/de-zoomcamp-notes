@@ -17,6 +17,8 @@ Week 2: Workflow Orchestration <!-- omit from toc -->
     - [Goal1: Creating a flow that collects the taxi data and writes it into Google Cloud Storage (Data Lake)](#goal1-creating-a-flow-that-collects-the-taxi-data-and-writes-it-into-google-cloud-storage-data-lake)
     - [Setup](#setup)
     - [Step01: Make a flow](#step01-make-a-flow)
+    - [step02: add tasks](#step02-add-tasks)
+    - [step03: write out local parquet files](#step03-write-out-local-parquet-files)
   - [2.2.4 - From Google Cloud Storage to Big Query](#224---from-google-cloud-storage-to-big-query)
   - [2.2.5 - Parametrizing Flow \& Deployments](#225---parametrizing-flow--deployments)
   - [2.2.6 - Schedules \& Docker Storage with Infrastructure](#226---schedules--docker-storage-with-infrastructure)
@@ -215,7 +217,15 @@ mkdir 02_gcp
 
 #### Step01: Make a flow
 
+#### step02: add tasks
 
+#### step03: write out local parquet files
+
+learned that I can creat multiple nested folders with the -p flag 
+
+```bash
+mkdir -p data/yellow
+```
 
 
 * Flow 1: Putting data to Google Cloud Storage 

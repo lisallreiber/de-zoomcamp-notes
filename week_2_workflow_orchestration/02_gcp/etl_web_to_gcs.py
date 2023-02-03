@@ -23,17 +23,25 @@ def clean(df: pd.DataFrame) -> pd.DataFrame:
     print(f"rows: {len(df)}")
     return df
 
-@flow("etl-yellow-taxi")
+@task
+def write_local(df: pd.DataFrame, color: str, dataset_file: str) -> Path:
+    """Write DataFrame to local parquet file"""
+    path = Path(f"data/{color}/{dataset_file}.parquet")
+    df.to_parquet(path, compression="gzip")
+    return path
+
+@flow(name="ETL Web to GCS")
 def etl_web_to_gcs() -> None:
     """Main ETL Function"""
     color = "yellow"
-    year = 2020
+    year = 2021
     month = 1
     dataset_file = f"{color}_tripdata_{year}-{month:02}"
     dataset_url = f"https://github.com/DataTalksClub/nyc-tlc-data/releases/download/{color}/{dataset_file}.csv.gz"
 
     df = fetch(dataset_url)
     df_clean = clean(df)
+    path = write_local(df_clean, color, dataset_file)
 
 
 if __name__ == "__main__":
