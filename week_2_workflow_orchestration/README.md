@@ -55,6 +55,15 @@ Week 2: Workflow Orchestration <!-- omit from toc -->
 * [01:45](https://www.youtube.com/watch?v=cdtN6dhp708&t=94s) What is Prefect?
   * Using python to write workflows
 * [02:00](https://www.youtube.com/watch?v=cdtN6dhp708&t=120s) Setting up a virtual envionment with conda
+
+```bash
+conda activate de-zoomcamp
+```
+
+```bash
+pip install -r requirements.txt 
+```
+
 * [02:50](https://www.youtube.com/watch?v=cdtN6dhp708&t=170s) Installing Prefect and Requirements
 * [03:30](https://www.youtube.com/watch?v=cdtN6dhp708&t=210s) Recap: 'ingest_data.py' and pgAdmin
 * [05:10](https://www.youtube.com/watch?v=cdtN6dhp708&t=310s) Why a scheduler is useful: transforming the script into a flow
