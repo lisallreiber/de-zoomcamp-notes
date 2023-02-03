@@ -268,8 +268,9 @@ gcp_cloud_storage_bucket_block = GcsBucket.load("de-zoomcamp-gcs")
 * Flow 2: From GCS to BigQuery
 
 
-
 :movie_camera: [Video](https://www.youtube.com/watch?v=Cx5jt-V5sgE&list=PL3MmuxUbc_hJed7dXYoJw8DoCuVHhGEQb&index=19)
+
+
 
 ### 2.2.5 - Parametrizing Flow & Deployments 
 
