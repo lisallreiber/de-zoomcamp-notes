@@ -26,6 +26,7 @@ Week 2: Workflow Orchestration <!-- omit from toc -->
   - [2.2.5 - Parametrizing Flow \& Deployments](#225---parametrizing-flow--deployments)
     - [Goal: parameterizing a flow script](#goal-parameterizing-a-flow-script)
     - [step1: adding parameters to the flow](#step1-adding-parameters-to-the-flow)
+    - [step2: how to add a subflow](#step2-how-to-add-a-subflow)
   - [2.2.6 - Schedules \& Docker Storage with Infrastructure](#226---schedules--docker-storage-with-infrastructure)
   - [2.2.7 - Prefect Cloud and Additional Resources](#227---prefect-cloud-and-additional-resources)
 - [Code repository](#code-repository)
@@ -296,6 +297,11 @@ gcp_cloud_storage_bucket_block = GcsBucket.load("de-zoomcamp-gcs")
 parameterizing a flow means that we can pass in parameters to the flow when we run it. The parameters (color, month, year) are not hard coded anymore but can be adapted at runtime. this way one flow could have different runs with different parameters.
 
 #### step1: adding parameters to the flow
+
+#### step2: how to add a subflow
+
+How we add subflow to our script. Why? It enables us to have one flow that triggers one or many other flows. Those could also be determined by parameters. It is kind of like going one extraction layer of code up. Then we have code (parent flow) that triggers other code (subflow). 
+
 
 
 ### 2.2.6 - Schedules & Docker Storage with Infrastructure
