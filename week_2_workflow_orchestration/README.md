@@ -14,6 +14,9 @@ Week 2: Workflow Orchestration <!-- omit from toc -->
   - [step5: blocks and collections](#step5-blocks-and-collections)
     - [step 5.1 postgres connector block](#step-51-postgres-connector-block)
   - [2.2.3 - ETL with GCP \& Prefect](#223---etl-with-gcp--prefect)
+    - [Goal1: Creating a flow that collects the taxi data and writes it into Google Cloud Storage (Data Lake)](#goal1-creating-a-flow-that-collects-the-taxi-data-and-writes-it-into-google-cloud-storage-data-lake)
+    - [Setup](#setup)
+    - [Step01: Make a flow](#step01-make-a-flow)
   - [2.2.4 - From Google Cloud Storage to Big Query](#224---from-google-cloud-storage-to-big-query)
   - [2.2.5 - Parametrizing Flow \& Deployments](#225---parametrizing-flow--deployments)
   - [2.2.6 - Schedules \& Docker Storage with Infrastructure](#226---schedules--docker-storage-with-infrastructure)
@@ -179,6 +182,32 @@ python ingest-data.py
 :movie_camera: [Video](https://www.youtube.com/watch?v=jAwRCyGLKOY&list=PL3MmuxUbc_hJed7dXYoJw8DoCuVHhGEQb&index=17)
 
 ### 2.2.3 - ETL with GCP & Prefect
+
+#### Goal1: Creating a flow that collects the taxi data and writes it into Google Cloud Storage (Data Lake)
+
+#### Setup
+
+we start off with activating the de-zoomcamp environement with 
+
+```bash
+conda activate de-zoomcamp
+```
+
+then we start the prefect orion server locally with 
+```bash
+prefect orion start
+```
+
+Then we create a new folder for this session 
+
+```bash
+mkdir 02_gcp
+```
+
+#### Step01: Make a flow
+
+
+
 
 * Flow 1: Putting data to Google Cloud Storage 
 
