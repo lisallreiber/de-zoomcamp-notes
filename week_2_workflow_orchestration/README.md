@@ -24,6 +24,8 @@ Week 2: Workflow Orchestration <!-- omit from toc -->
     - [step 2: add task 2: transform data](#step-2-add-task-2-transform-data)
     - [step 3: add task 3: write to BigQuery](#step-3-add-task-3-write-to-bigquery)
   - [2.2.5 - Parametrizing Flow \& Deployments](#225---parametrizing-flow--deployments)
+    - [Goal: parameterizing a flow script](#goal-parameterizing-a-flow-script)
+    - [step1: adding parameters to the flow](#step1-adding-parameters-to-the-flow)
   - [2.2.6 - Schedules \& Docker Storage with Infrastructure](#226---schedules--docker-storage-with-infrastructure)
   - [2.2.7 - Prefect Cloud and Additional Resources](#227---prefect-cloud-and-additional-resources)
 - [Code repository](#code-repository)
@@ -288,6 +290,13 @@ gcp_cloud_storage_bucket_block = GcsBucket.load("de-zoomcamp-gcs")
 * Notifications
 
 :movie_camera: [Video](https://www.youtube.com/watch?v=QrDxPjX10iw&list=PL3MmuxUbc_hJed7dXYoJw8DoCuVHhGEQb&index=20)
+
+#### Goal: parameterizing a flow script
+
+parameterizing a flow means that we can pass in parameters to the flow when we run it. The parameters (color, month, year) are not hard coded anymore but can be adapted at runtime. this way one flow could have different runs with different parameters.
+
+#### step1: adding parameters to the flow
+
 
 ### 2.2.6 - Schedules & Docker Storage with Infrastructure
 
