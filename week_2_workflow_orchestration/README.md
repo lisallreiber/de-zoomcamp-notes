@@ -31,6 +31,11 @@ Week 2: Workflow Orchestration <!-- omit from toc -->
     - [step1: Deployment via CLI](#step1-deployment-via-cli)
     - [step2: Deployment via Python](#step2-deployment-via-python)
   - [2.2.6 - Schedules \& Docker Storage with Infrastructure](#226---schedules--docker-storage-with-infrastructure)
+    - [step 1: Scheduling a deployment](#step-1-scheduling-a-deployment)
+    - [step 2: Flow code storage](#step-2-flow-code-storage)
+    - [step 3: Running tasks in Docker](#step-3-running-tasks-in-docker)
+    - [prefect profiles](#prefect-profiles)
+    - [using an agent](#using-an-agent)
   - [2.2.7 - Prefect Cloud and Additional Resources](#227---prefect-cloud-and-additional-resources)
 - [Code repository](#code-repository)
 - [Homework](#homework)
@@ -364,14 +369,97 @@ prefect agent start --work-queue "default"
 
 ### 2.2.6 - Schedules & Docker Storage with Infrastructure
 
-* Scheduling a deployment
-* Flow code storage
-* Running tasks in Docker
-
 :movie_camera: [Video](https://www.youtube.com/watch?v=psNSzqTsi-s&list=PL3MmuxUbc_hJed7dXYoJw8DoCuVHhGEQb&index=21)
 
-### 2.2.7 - Prefect Cloud and Additional Resources 
+#### step 1: Scheduling a deployment
 
+You can schedule a deplyment in the Orion UI in the Deployments Section
+
+Or you can schedule it in the CLI with `prefect deployment build` and a scheduling tag
+
+- after the colon, we specify the entrypoint flow
+- `-n` tag: naming the deployment
+- `--cron` tag: setting the schedule with cron
+- `--interval` tag: setting the schedule with an interval
+- `-a` tag: building AND applying it right away
+
+```bash
+prefect deployment build 03_deployment/parameterized_flow.py:etl_parent_flow -n "Paramerized ETL from CLI" --cron "0 0 * * *" -a 
+```
+
+this means we can create the schedule when we create the deployment. Keep in mind that there needs to be an agent to run the flow
+
+#### step 2: Flow code storage
+??
+
+#### step 3: Running tasks in Docker
+
+1. make a dockerfile with where we geth the prefecthq docker image
+2. copy a docker-requirements.txt over
+3. install requirements
+   - use `--trusted_host` pypi.python.org 
+   - use `--no-cache-dir` so that pip doesnt use anything cached
+4. copy flows folder to `/opt/prefect/flows` (this is the default prefect directory for flows)
+5. copy data folder ofver to default dest `opt/prefect/data`
+6. build docker image with 
+  ```bash
+  docker build -t lisallreiber/prefect:de-zoomcamp .
+  ```
+7. Pushing it to docker hub
+   - if you are not logged into docker hub -> use `docker login` to do so
+   - push with:
+  ```bash
+  docker image push lisareiber prefect:de-zoomcamp
+  ```
+  - now its available for others 
+  - if we want to use this for our deployment, we can do this with a prefect block
+8. create a docker block 
+  - either in the UI or in a dedicated [python file](blocks/make_docker_block.py)
+9. create a deployment with the docker block
+  - create a [`docker-deploy.py`](flows/03_deployment/docker_deploy.py) script where you define the flow to run and the docker image in which to run it (infrastructure argument)
+10. run the docker-deploy file with
+    
+    ```bash
+    python flows/03_deployment/docker_deploy.py
+    ```
+
+#### prefect profiles
+
+you can list them with:
+
+```bash
+prefect profiles ls
+```
+
+if you want the dockerhub container to be able to interface with orion server, you need to add the prefect api url in the prefect profile of your choice
+
+```bash
+# use a local Orion API server
+prefect config set PREFECT_API_URL="http://127.0.0.1:4200/api"
+
+# use Prefect Cloud
+prefect config set PREFECT_API_URL="https://api.prefect.cloud/api/accounts/[ACCOUNT-ID]/workspaces/[WORKSPACE-ID]"
+````
+
+this way will not not use the local xxx API token. Instead we want to use an endpoint from a specific URL. Find more info in the prefect documentation
+
+> The PREFECT_API_URL value specifies the API endpoint of your Prefect Cloud workspace or Prefect Orion API server instance. 
+
+#### using an agent
+
+now we start an agend with 
+
+- `-q` flag defines the queue from which the agent takes on work
+
+```bash
+prefect agent start -q "default"
+```
+
+What is new now, is that beforehand, everything ran on our local machine. But now, everything runs in a docker container.
+
+
+
+### 2.2.7 - Prefect Cloud and Additional Resources 
 
 * Using Prefect Cloud instead of local Prefect
 * Workspaces
@@ -394,11 +482,6 @@ To be linked here by Jan. 30
 
 
 ## Community notes
-
-Did you take notes? You can share them here.
-
-* Add your notes here (above this line)
-
 
 ### 2022 notes 
 
