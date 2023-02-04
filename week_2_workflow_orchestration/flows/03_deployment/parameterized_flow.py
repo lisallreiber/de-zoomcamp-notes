@@ -5,7 +5,7 @@ from prefect.tasks import task_input_hash           # to create a cache key
 from datetime import timedelta                      # to set cache expiration
 from prefect_gcp.cloud_storage import GcsBucket     # to upload to GCS
 
-@task(name="fetch data",log_prints=True, retries=3, cache_key_fn=task_input_hash, cache_expiration=timedelta(days=1))
+@task(name="fetch data",log_prints=True, retries=3)
 def fetch(dataset_url: str) -> pd.DataFrame:
     """Fetch data from a URL into Pandas DataFrame"""
 
@@ -26,7 +26,8 @@ def clean(df: pd.DataFrame) -> pd.DataFrame:
 def write_local(df: pd.DataFrame, color: str, dataset_file: str) -> Path:
     """Write DataFrame to local parquet file"""
     path = Path(f"data/{color}/{dataset_file}.parquet")
-    df.to_parquet(path, compression="gzip")
+    print(path.cwd().parent)
+    df.to_parquet(f"{path}", compression="gzip")
     return path
 
 @task(name="write GCS",log_prints=True)
