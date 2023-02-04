@@ -339,8 +339,25 @@ then, we can apply the deploment with
 prefect deployment apply 3 
 ```
 
-in the next step, we need to create an agent who will execute the deployment
+once the deployment is applied, we can trigger it from the CLI or from the UI (quick or custom)
 
+in the work queues section we can see the deployment we just created, but it cannot run without an agent. 
+
+thats why -> in the next step, we need to create an agent who will execute the deployment
+
+an agent is a very very lightweight python process that runs on a server (execution environment) and executes the flows.
+
+for now our agent will be our local machine. the agent then pulls the "work" from the work queue. 
+
+summary:
+- the deployment specifies which flow goes to which work queue
+- the agents pick their work form the work queue.
+
+we start the agent with 
+
+```bash
+prefect agent start --work-queue "default"
+```
 
 
 #### step2: Deployment via Python
