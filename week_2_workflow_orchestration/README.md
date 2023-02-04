@@ -274,7 +274,7 @@ once the blocks are configures in the orion UI, it gives out the code we can use
 ```bash
 from prefect_gcp.cloud_storage import GcsBucket
 gcp_cloud_storage_bucket_block = GcsBucket.load("de-zoomcamp-gcs")
-````
+```
 
 
 ### 2.2.4 - From Google Cloud Storage to Big Query
@@ -325,14 +325,14 @@ we start with building the deployment:
 - we need to provide the entrypoint flow, because in our script there are multiple flows defined
 
 ```bash
-prefect deployment build 3_deployment/parameterized-flow.py:etl_parent_flow -n "Paramerized ETL"
+prefect deployment build 03_deployment/parameterized_flow.py:etl_parent_flow -n "Paramerized ETL"
 ```
 
 Note: make sure you are in the same directory as the file, otherwise the .yaml file will be created from wherever you are calling the function from.
 
 e.g. this did not work ;)
 ```bash
-prefect deployment build 3_deployment/parameterized-flow.py:etl_parent_flow -n "Paramerized ETL"
+prefect deployment build parameterized_flow.py:etl_parent_flow -n "Paramerized ETL"
 ```
 the command generates a yaml file with all the meta data.
 
@@ -341,7 +341,7 @@ this can be adapted as needed.
 then, we can apply the deploment with 
 
 ```bash
-prefect deployment apply 3 
+prefect deployment apply 03
 ```
 
 once the deployment is applied, we can trigger it from the CLI or from the UI (quick or custom)
@@ -384,7 +384,7 @@ Or you can schedule it in the CLI with `prefect deployment build` and a scheduli
 - `-a` tag: building AND applying it right away
 
 ```bash
-prefect deployment build 03_deployment/parameterized_flow.py:etl_parent_flow -n "Paramerized ETL from CLI" --cron "0 0 * * *" -a 
+prefect deployment build flows/03_deployment/parameterized_flow.py:etl_parent_flow -n "Paramerized ETL from CLI" --cron "0 0 * * *" -a 
 ```
 
 this means we can create the schedule when we create the deployment. Keep in mind that there needs to be an agent to run the flow
@@ -403,14 +403,15 @@ this means we can create the schedule when we create the deployment. Keep in min
 5. copy data folder ofver to default dest `opt/prefect/data`
 6. build docker image with 
   ```bash
-  docker build -t lisallreiber/prefect:de-zoomcamp .
+  docker build -t lisareiber/prefect:de-zoomcamp .
   ```
 7. Pushing it to docker hub
    - if you are not logged into docker hub -> use `docker login` to do so
    - push with:
-  ```bash
-  docker image push lisareiber prefect:de-zoomcamp
-  ```
+   - 
+```bash
+  docker image push lisareiber/prefect:de-zoomcamp
+```
   - now its available for others 
   - if we want to use this for our deployment, we can do this with a prefect block
 8. create a docker block 
@@ -419,9 +420,9 @@ this means we can create the schedule when we create the deployment. Keep in min
   - create a [`docker-deploy.py`](flows/03_deployment/docker_deploy.py) script where you define the flow to run and the docker image in which to run it (infrastructure argument)
 10. run the docker-deploy file with
     
-    ```bash
-    python flows/03_deployment/docker_deploy.py
-    ```
+```bash
+python flows/03_deployment/docker_deploy.py
+```
 
 #### prefect profiles
 
@@ -453,6 +454,10 @@ now we start an agend with
 
 ```bash
 prefect agent start -q "default"
+```
+
+```bash
+prefect deployment run etl-parent-flow/docker-flow -p "months=[1,2,3]"
 ```
 
 What is new now, is that beforehand, everything ran on our local machine. But now, everything runs in a docker container.
