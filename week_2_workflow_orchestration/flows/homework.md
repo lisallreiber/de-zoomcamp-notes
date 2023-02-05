@@ -1,5 +1,14 @@
 ## Week 2 Homework
 
+- [Week 2 Homework](#week-2-homework)
+- [Question 1. Load January 2020 data](#question-1-load-january-2020-data)
+- [Question 2. Scheduling with Cron](#question-2-scheduling-with-cron)
+- [Question 3. Loading data to BigQuery](#question-3-loading-data-to-bigquery)
+- [Question 4. Github Storage Block](#question-4-github-storage-block)
+- [Question 5. Email notifications](#question-5-email-notifications)
+- [Question 6. Secrets](#question-6-secrets)
+- [Submitting the solutions](#submitting-the-solutions)
+
 The goal of this homework is to familiarise users with workflow orchestration. 
 
 
@@ -9,11 +18,33 @@ Using the `etl_web_to_gcs.py` flow that loads taxi data into GCS as a guide, cre
 
 How many rows does that dataset have?
 
-* 447,770
-* 766,792
-* 299,234
-* 822,132
+* **447,770 ✅**
+* ~~766,792~~
+* ~~299,234~~
+* ~~822,132~~
 
+**steps:**
+
+```bash
+# cd to top-level folder
+cd week_2_workflow_orchestration
+# activate conda environment
+conda activate de-zoomcamp
+```
+- adapt the [etl_web_to_gcs.py flow](02_gcp/etl_web_to_gcs.py) to load the green taxi data for January 2020
+- run the flow from [new etl script](04_homework/etl_web_to_gcs.py)
+
+```bash
+# start prefect
+prefect orion start 
+# run the flow  
+python flows/04_homework/etl_web_to_gcs.py
+```
+
+- go to prefect orion dashboard at http://127.0.0.1:4200
+- navigate to the flow and check the logs for the printed output of `print(f"rows: {len(df)}")`
+
+**✅ Answer: 447,770**
 
 ## Question 2. Scheduling with Cron
 
