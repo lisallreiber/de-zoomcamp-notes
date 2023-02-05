@@ -52,11 +52,22 @@ Cron is a common scheduling specification for workflows.
 
 Using the flow in `etl_web_to_gcs.py`, create a deployment to run on the first of every month at 5pm UTC. What’s the cron schedule for that?
 
-- `0 5 1 * *`
-- `0 0 5 1 *`
-- `5 * 1 0 *`
-- `* * 5 1 0`
+- **`0 5 1 * *` ✅**
+- ~~`0 0 5 1 *`~~
+- ~~`5 * 1 0 *`~~
+- ~~`* * 5 1 0`~~
 
+**steps**
+
+- via prefect CLI: build and apply a deployment to prefect cloud and specify the cron schedule
+- using https://crontab.guru/ to define CRON schedule
+- -a flag also applies the deployment
+- -t flag adds a tag to the deployment
+```bash
+prefect deployment build flows/04_homework/parameterized_flow.py:etl_parent_flow -n "Paramerized ETL from CLI" --cron "0 5 1 * *" -a -t homework
+```
+
+**✅ Answer: 0 5 1 * ***
 
 ## Question 3. Loading data to BigQuery 
 
