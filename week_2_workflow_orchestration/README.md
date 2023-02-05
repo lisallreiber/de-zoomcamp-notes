@@ -130,7 +130,7 @@ since flows are function we can pass arguments into them and use them in the flo
 again we run the script again with 
 
 ```bash
-python ingest_data.py
+python ingest-data.py
 ```
 * [22:20](https://www.youtube.com/watch?v=cdtN6dhp708&t=1340s) Other Prefect options
 * [22:25](https://www.youtube.com/watch?v=cdtN6dhp708&t=1345s) Parameterizing the flow
