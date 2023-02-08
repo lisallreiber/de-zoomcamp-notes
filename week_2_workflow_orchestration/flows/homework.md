@@ -1,6 +1,5 @@
-## Week 2 Homework
+## Week 2 Homework: Workflow Orchestration <!-- omit from toc -->
 
-- [Week 2 Homework](#week-2-homework)
 - [Question 1. Load January 2020 data](#question-1-load-january-2020-data)
 - [Question 2. Scheduling with Cron](#question-2-scheduling-with-cron)
 - [Question 3. Loading data to BigQuery](#question-3-loading-data-to-bigquery)
@@ -8,9 +7,9 @@
 - [Question 5. Email notifications](#question-5-email-notifications)
 - [Question 6. Secrets](#question-6-secrets)
 - [Submitting the solutions](#submitting-the-solutions)
+- [Learning in public](#learning-in-public)
 
 The goal of this homework is to familiarise users with workflow orchestration. 
-
 
 ## Question 1. Load January 2020 data
 
@@ -200,15 +199,28 @@ How many rows were processed by the script?
 
 Prefect Secret blocks provide secure, encrypted storage in the database and obfuscation in the UI. Create a secret block in the UI that stores a fake 10-digit password to connect to a third-party service. Once you’ve created your block in the UI, how many characters are shown as asterisks on the next page of the UI (*).
 
-- 5
-- 6
-- 8 ✅
-- 10
+- ~~5~~
+- ~~6~~
+- **8 ✅**
+- ~~10~~
 
+**steps**
+- add a secret block in the Prefect Cloud UI and enter a 10-digit secret
+- check how many (*) are shown
+
+**Answer: 8 ✅**
 
 ## Submitting the solutions
 
-* Form for submitting: TODO
+* Form for submitting: 
 * You can submit your homework multiple times. In this case, only the last submission will be used. 
 
 Deadline: 6 February (Monday), 22:00 CET
+
+## Learning in public
+
+- [Prefect Cloud Interface Tweet](https://twitter.com/lisa_reiber/status/1623375846303010824?s=20&t=l3B3Fs-UygcQLsg--63YnQ)
+- [Tech Setup Tweet](https://twitter.com/lisa_reiber/status/1622518653274009600?s=20&t=l3B3Fs-UygcQLsg--63YnQ)
+- [Working in public: timeout argument is your friend tweet](https://twitter.com/lisa_reiber/status/1622926816246898688?s=20&t=l3B3Fs-UygcQLsg--63YnQ)
+- [Coding with Github Copilot: standard syntax](https://twitter.com/lisa_reiber/status/1621529827416375296?s=20&t=l3B3Fs-UygcQLsg--63YnQ)
+- [Coding with Github Copilot: forloops](https://twitter.com/lisa_reiber/status/1621557985423015938?s=20&t=l3B3Fs-UygcQLsg--63YnQ)
