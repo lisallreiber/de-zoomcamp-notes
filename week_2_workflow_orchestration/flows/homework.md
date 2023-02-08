@@ -67,7 +67,7 @@ Using the flow in `etl_web_to_gcs.py`, create a deployment to run on the first o
 prefect deployment build flows/04_homework/parameterized_flow.py:etl_parent_flow -n "Paramerized ETL from CLI" --cron "0 5 1 * *" -a -t homework
 ```
 
-**✅ Answer: 0 5 1 * ***
+**✅ Answer: 0 5 1 \* \***
 
 ## Question 3. Loading data to BigQuery 
 
@@ -83,12 +83,30 @@ Create a deployment for this flow to run in a local subprocess with local flow c
 
 Make sure you have the parquet data files for Yellow taxi data for Feb. 2019 and March 2019 loaded in GCS. Run your deployment to append this data to your BiqQuery table. How many rows did your flow code process?
 
-- 14,851,920
-- 12,282,990
-- 27,235,753
-- 11,338,483
+- **14,851,920 ✅**
+- ~~12,282,990~~
+- ~~27,235,753~~
+- ~~11,338,483~~
 
+**steps**
+- use the [parameterized ETL Flow](03_deployment/parameterized_flow.py) to load the yellow taxi data for February 2019 and March 2019 into GCS
+  - set the months parameter to `months=[2,3]`
+  - set year to `2019`
+  - set color to `yellow`
+  
+- [adapt the etl_gcs_to_bq.py flow](04_homework/etl_gcs_to_bq.py) to load the yellow taxi data for February 2019 and March 2019
+    - add flow factory for Feb and Mar Flows
+    - keep track of processed rows with print statement
+    - build & apply deployment and run it
+```bash
+## build and apply deployment
+prefect deployment build flows/04_homework/etl_gcs_to_bq.py:etl_factory_flow -n "ETL GCS to BQ" --flow-storage-type local -a -t homework
 
+## run deployment
+prefect deployment run "etl-factory/ETL GCS to BQ"
+```
+
+**✅ Answer: 14,851,920**
 
 ## Question 4. Github Storage Block
 
