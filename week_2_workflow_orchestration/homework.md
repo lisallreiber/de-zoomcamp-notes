@@ -30,8 +30,8 @@ cd week_2_workflow_orchestration
 # activate conda environment
 conda activate de-zoomcamp
 ```
-- adapt the [etl_web_to_gcs.py flow](02_gcp/etl_web_to_gcs.py) to load the green taxi data for January 2020
-- run the flow from [new etl script](04_homework/etl_web_to_gcs.py)
+- adapt the [etl_web_to_gcs.py flow](flows/02_gcp/etl_web_to_gcs.py) to load the green taxi data for January 2020
+- run the flow from [new etl script](flows/04_homework/etl_web_to_gcs.py)
 
 ```bash
 # start prefect
@@ -88,12 +88,12 @@ Make sure you have the parquet data files for Yellow taxi data for Feb. 2019 and
 - ~~11,338,483~~
 
 **steps**
-- use the [parameterized ETL Flow](03_deployment/parameterized_flow.py) to load the yellow taxi data for February 2019 and March 2019 into GCS
+- use the [parameterized ETL Flow](flows/03_deployment/parameterized_flow.py) to load the yellow taxi data for February 2019 and March 2019 into GCS
   - set the months parameter to `months=[2,3]`
   - set year to `2019`
   - set color to `yellow`
   
-- [adapt the etl_gcs_to_bq.py flow](04_homework/etl_gcs_to_bq.py) to load the yellow taxi data for February 2019 and March 2019
+- [adapt the etl_gcs_to_bq.py flow](flows/04_homework/etl_gcs_to_bq.py) to load the yellow taxi data for February 2019 and March 2019
     - add flow factory for Feb and Mar Flows
     - keep track of processed rows with print statement
     - build & apply deployment and run it
@@ -109,7 +109,7 @@ prefect deployment run "etl-factory/ETL GCS to BQ"
 
 ## Question 4. Github Storage Block
 
-Using the `web_to_gcs` script from the videos as a guide, you want to store your flow code in a GitHub repository for collaboration with your team. Prefect can look in the GitHub repo to find your flow code and read it. Create a GitHub storage block from the UI or in Python code and use that in your Deployment instead of storing your flow code locally or baking your flow code into a Docker image. 
+Using the `web_to_gcs.py` script from the videos as a guide, you want to store your flow code in a GitHub repository for collaboration with your team. Prefect can look in the GitHub repo to find your flow code and read it. Create a GitHub storage block from the UI or in Python code and use that in your Deployment instead of storing your flow code locally or baking your flow code into a Docker image. 
 
 Note that you will have to push your code to GitHub, Prefect will not push it for you.
 
@@ -131,7 +131,7 @@ How many rows were processed by the script?
     # or generate one with code
     python blocks/make_github_block.py 
     ```
-- create a [github_deploy.py](04_homework/github_deploy.py) script to build and apply the deployment from Github code
+- create a [github_deploy.py](flows/04_homework/github_deploy.py) script to build and apply the deployment from Github code
     ```bash
     python flows/04_homework/github_deploy.py     
     ```
@@ -175,11 +175,11 @@ How many rows were processed by the script?
     ```bash
     prefect profile create prefect-cloud
     ```
-- run [make_github_blcok.py script](../blocks/make_github_block.py) to create github block in the cloud  
+- run [make_github_block.py script](blocks/make_github_block.py) to create github block in the cloud  
     ```bash
     python blocks/make_github_block.py
     ```
-- run the [github_deploy.py](04_homework/github_deploy.py) script to build and apply the deployment from Github code
+- run the [github_deploy.py](flows/04_homework/github_deploy.py) script to build and apply the deployment from Github code
     ```bash
     python flows/04_homework/github_deploy.py     
     ```
@@ -224,3 +224,4 @@ Deadline: 6 February (Monday), 22:00 CET
 - [Working in public: timeout argument is your friend tweet](https://twitter.com/lisa_reiber/status/1622926816246898688?s=20&t=l3B3Fs-UygcQLsg--63YnQ)
 - [Coding with Github Copilot: standard syntax](https://twitter.com/lisa_reiber/status/1621529827416375296?s=20&t=l3B3Fs-UygcQLsg--63YnQ)
 - [Coding with Github Copilot: forloops](https://twitter.com/lisa_reiber/status/1621557985423015938?s=20&t=l3B3Fs-UygcQLsg--63YnQ)
+- [Linkedin: History of Databases Post](https://www.linkedin.com/posts/lisareiber_01-history-of-databases-cmu-advanced-databases-activity-7027636451441836032-ID60?utm_source=share&utm_medium=member_desktop)
