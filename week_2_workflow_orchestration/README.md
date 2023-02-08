@@ -39,6 +39,7 @@ Week 2: Workflow Orchestration <!-- omit from toc -->
   - [2.2.7 - Prefect Cloud and Additional Resources](#227---prefect-cloud-and-additional-resources)
 - [Code repository](#code-repository)
 - [Homework](#homework)
+  - [Resources](#resources)
 - [Community notes](#community-notes)
   - [2022 notes](#2022-notes)
 
@@ -483,8 +484,13 @@ What is new now, is that beforehand, everything ran on our local machine. But no
 
 ## Homework 
 
-To be linked here by Jan. 30
+### Resources
 
+- Medium Article: [How to store workflow on GH and run on Docker container](https://towardsdatascience.com/create-robust-data-pipelines-with-prefect-docker-and-github-12b231ca6ed2)
+- Prefect Docs Video: [Whats new in Prefect 2.3.0](https://www.prefect.io/guide/videos/video-whats-new-in-prefect-2-3-0/)
+- There are two types of blocks: 
+  - [Infrastructure Blocks](https://docs.prefect.io/concepts/infrastructure/)
+  - [Storage Blocks](https://docs.prefect.io/concepts/storage/)
 
 ## Community notes
 

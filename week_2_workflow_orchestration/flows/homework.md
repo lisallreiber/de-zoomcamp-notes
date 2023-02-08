@@ -118,12 +118,37 @@ Run your deployment in a local subprocess (the default if you don’t specify an
 
 How many rows were processed by the script?
 
-- 88,019
-- 192,297
-- 88,605
-- 190,225
+- ~~88,019~~
+- ~~192,297~~
+- **88,605 ✅**
+- ~~190,225~~
 
+**steps**
+- create a github storage block in the UI
+     ```bash
+    pip install prefect-github            
+    prefect block register -m prefect_github  
 
+    # or generate one with code
+    python blocks/make_github_block.py 
+    ```
+- create a [github_deploy.py](04_homework/github_deploy.py) script to build and apply the deployment from Github code
+    ```bash
+    python flows/04_homework/github_deploy.py     
+    ```
+- OR build deployment via CLI
+    <!-- ```bash
+    prefect deployment build flows/04_homework/etl_web_to_gcs.py:etl_web_to_gcs --name github_deploy --tag dev -sb github/test-gh
+    ``` -->
+
+    ```bash
+    prefect deployment build ./week_2_workflow_orchestration/flows/04_homework/etl_web_to_gcs.py:etl_web_to_gcs -n etl-from-github -sb github/de-zoomcamp-github/ --params='{"year":2020, "month":11, "color":"green"}' --tag homework --apply
+    ```
+- get the number of processed rows from the prefect logs 
+
+<!-- open question: where is the locally written data and how do I specify the path to it? -->
+
+**✅ Answer: 88,605**
 
 ## Question 5. Email notifications
 
