@@ -160,11 +160,41 @@ Set up an Automation that will send yourself an email when a flow run succeeds. 
 
 How many rows were processed by the script?
 
-- `125,268`
-- `377,922`
-- `728,390`
-- `514,392`
+- ~~`125,268`~~
+- ~~`377,922`~~
+- ~~`728,390`~~
+- **`514,392` ✅**
 
+**steps**
+
+- create a free account at [app.prefect.cloud](https://app.prefect.cloud/)
+- login with API token
+    ```bash
+    prefect login cloud
+    ```
+- create a new profile
+    ```bash
+    prefect profile create prefect-cloud
+    ```
+- run [make_github_blcok.py script](../blocks/make_github_block.py) to create github block in the cloud  
+    ```bash
+    python blocks/make_github_block.py
+    ```
+- run the [github_deploy.py](04_homework/github_deploy.py) script to build and apply the deployment from Github code
+    ```bash
+    python flows/04_homework/github_deploy.py     
+    ```
+- run the deployment with new parameters
+    ```bash
+    prefect deployment run "etl-web-to-gcs/github-flow" --params='{"year":2019, "month":4, "color":"green"}' --tag homework 
+    ```
+- start an agent
+    ```bash
+    prefect agent start --work-queue "default"
+    ```
+- read the number of rows from the logs
+  
+**Answer: 514,392 ✅**
 
 ## Question 6. Secrets
 
@@ -172,7 +202,7 @@ Prefect Secret blocks provide secure, encrypted storage in the database and obfu
 
 - 5
 - 6
-- 8
+- 8 ✅
 - 10
 
 

@@ -4,7 +4,7 @@ from prefect.filesystems import GitHub
 github_block = GitHub(repository="https://github.com/lisallreiber/de-zoomcamp-notes")
 
 # list files in repo
-github_block.get_directory("week_2_workflow_orchestration/flows")  # specify a subfolder of repo
+# github_block.get_directory("week_2_workflow_orchestration/flows")  # specify a subfolder of repo
 
 # save the block
 github_block.save("de-zoomcamp-github", overwrite=True)

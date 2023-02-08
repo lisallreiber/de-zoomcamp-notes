@@ -1,9 +1,9 @@
 from prefect.deployments import Deployment
-from prefect_github.repository import GitHubRepository
+from prefect.filesystems import GitHub
 from etl_web_to_gcs import etl_web_to_gcs
 
 # import function from parameterized flow to login to GH
-github_repo_block = GitHubRepository.load("de-zoomcamp-github")
+github_repo_block = GitHub.load("de-zoomcamp-github")
 
 deployment = Deployment.build_from_flow(
     flow=etl_web_to_gcs,
