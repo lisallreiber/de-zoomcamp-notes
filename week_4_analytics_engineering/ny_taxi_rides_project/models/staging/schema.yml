@@ -2,9 +2,9 @@ version: 2
 
 sources: 
     - name: staging
-      database: taxi-rides-ny-xxxxxx
+      database: prefect-de-zoomcamp-376713
       schema: trips_data_all
       
       tables:
-        - name: green_tripdata
-        - name: yellow_tripdata
+        - name: green_trips
+        - name: yellow_trips
