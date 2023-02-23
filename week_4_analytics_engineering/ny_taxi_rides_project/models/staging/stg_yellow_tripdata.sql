@@ -5,7 +5,13 @@
 
 -- instead of select * from trip_data_all.green_tripdata
 -- we create a schema.yml where we create a resource
-
+with tripdata as 
+(
+  select *,
+    row_number() over(partition by vendorid, tpep_pickup_datetime) as row_id
+  from {{ source('staging','yellow_trips') }}
+  where vendorid is not null 
+)
 select
     -- identifiers
     {{ dbt_utils.surrogate_key(['vendorid', 'tpep_pickup_datetime']) }} as tripid,
@@ -37,8 +43,8 @@ select
     cast(payment_type as integer) as payment_type,
     {{ get_payment_type_description('payment_type') }} as payment_type_description, 
     cast(congestion_surcharge as numeric) as congestion_surcharge
-from {{ source('staging', 'yellow_trips')}}
-where vendorid is not null
+from tripdata
+where row_id = 1
 -- dbt build -n <model.sql> --var 'is_test_run: false'
 {% if var('is_test_run', default=false) %}
 
