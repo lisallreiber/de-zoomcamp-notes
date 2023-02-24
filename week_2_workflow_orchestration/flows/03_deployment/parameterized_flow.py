@@ -27,7 +27,10 @@ def write_local(df: pd.DataFrame, color: str, dataset_file: str) -> Path:
     """Write DataFrame to local parquet file"""
     path = Path(f"data/{color}/{dataset_file}.parquet")
     print(path.cwd().parent)
-    df.to_parquet(f"{path}", compression="gzip")
+    # if path doesnt exist, create path
+    path.parent.mkdir(parents=True, exist_ok=True)
+    print(f"writing to {path}...")
+    df.to_parquet(path, compression="gzip")
     return path
 
 @task(name="write GCS",log_prints=True)
@@ -35,7 +38,7 @@ def write_gcs(path: Path) -> None:
     """Write local parquet file to GCS"""
     gcp_cloud_storage_bucket_block = GcsBucket.load("de-zoomcamp-gcs")
     gcp_cloud_storage_bucket_block.upload_from_path(
-        from_path=f"{path}",
+        from_path=path,
         to_path=path,
         timeout=120  
     )

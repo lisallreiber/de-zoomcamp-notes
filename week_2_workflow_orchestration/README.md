@@ -74,6 +74,7 @@ Week 2: Workflow Orchestration <!-- omit from toc -->
 * [02:00](https://www.youtube.com/watch?v=cdtN6dhp708&t=120s) Setting up a virtual envionment with conda
 
 ```bash
+# conda create -n de-zoomcamp python=3.9
 conda activate de-zoomcamp
 ```
 
