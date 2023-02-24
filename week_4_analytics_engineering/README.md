@@ -1,0 +1,6 @@
+- in week four I got a new laptop and ha to do a complete redo of the whole setup
+- I learned about some things my notes didnt cover enough in the first run through:
+  - naming things: how did i name the prefect blocks and why
+  - did I specify a relative path?
+  - where can I get the code to make blocks so that I have it in code for the next time?
+- 

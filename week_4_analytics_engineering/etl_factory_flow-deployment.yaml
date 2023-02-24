@@ -1,0 +1,69 @@
+###
+### A complete description of a Prefect Deployment for flow 'etl-factory-flow'
+###
+name: 'test: gcs-to-bq'
+description: 'Parent flow: factory for other flows'
+version: 5837432c713bd659da7b2277262a95b6
+# The work queue that will handle this deployment's runs
+work_queue_name: default
+tags: []
+parameters: {}
+schedule: null
+infra_overrides: {}
+
+###
+### DO NOT EDIT BELOW THIS LINE
+###
+flow_name: etl-factory-flow
+manifest_path: null
+infrastructure:
+  type: process
+  env: {}
+  labels: {}
+  name: null
+  command: null
+  stream_output: true
+  working_dir: null
+  _block_document_id: 9161b900-84f5-4326-baa8-702ff9a2fdcf
+  _block_document_name: anonymous-9e8cc0c0-d3af-41e8-9e85-48103c8e8bf0
+  _is_anonymous: true
+  block_type_slug: process
+  _block_type_slug: process
+storage: null
+path: /Users/lisareiber/git/de-zoomcamp-notes/week_4_analytics_engineering
+entrypoint: flows/taxi-flow-factory_gcs-to-bq.py:etl_factory_flow
+parameter_openapi_schema:
+  title: Parameters
+  type: object
+  properties:
+    months:
+      title: months
+      default:
+      - 1
+      - 2
+      - 3
+      - 4
+      - 5
+      - 6
+      - 7
+      - 8
+      - 9
+      - 10
+      - 11
+      - 12
+      position: 0
+      type: array
+      items:
+        type: integer
+    year:
+      title: year
+      default: 2019
+      position: 1
+      type: integer
+    color:
+      title: color
+      default: yellow
+      position: 2
+      type: string
+  required: null
+  definitions: null
