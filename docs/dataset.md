@@ -15,8 +15,6 @@ Below I am only concentrating on Yellow and green cabs
 
 ### Yellow and green cabs
 
-,
-
 | Columns               | Definition | Example             |
 | --------------------- | ---------- | ------------------- |
 | VendorID              |            | 2                   |
