@@ -1,20 +1,23 @@
 version: 2
 
 sources: 
-    - name: staging
-      # for BigQuery
-      database: prefect-de-zoomcamp-376713
-      # For postgres:
-      # database: production
-      schema: trips_data_all
-      
-      # loaded_at_field: record_loaded_at
-      tables:
-        - name: green_trips
-        - name: yellow_trips
-          # freshness:
-            # error_after: {count: 6, period: hour}
+  - name: staging
+    database: prefect-de-zoomcamp-376713
+    schema: trips_data_all
+    tables:
+      - name: green_trips
+      - name: yellow_trips
 
+  - name: staging_fhv
+    database: prefect-de-zoomcamp-376713
+    schema: fhv_data
+    tables:
+      - name: fhv_data_partitioned_clustered
+
+models: 
+  - name: fhv_data
+    description: >
+      This data describes FHV trip data. Each row represents a single trip in an FHV. 
 models:
     - name: stg_green_tripdata
       description: >
