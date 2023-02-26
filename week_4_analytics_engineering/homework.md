@@ -52,7 +52,7 @@ You will need to complete "Visualising the data" videos, either using [google da
 
 **steps:**
 
-1. open a [Google Looker Report](https://lookerstudio.google.com/s/lg8hnpsprTs) and visualize the distribution of service types with a donut 
+1. open a [Google Looker Report](https://lookerstudio.google.com/reporting/c6e2f62d-8d0d-456c-8b57-501769a13f96) and visualize the distribution of service types with a donut 
 
 **my answer: Yellow: 89.8 % / Green: 10.2 % ✅**
 
@@ -123,7 +123,7 @@ Create a dashboard with some tiles that you find interesting to explore the data
 
 **steps:**
 
-1. connect the procuction facts_fhv_trips model with [Google Data Looker](https://lookerstudio.google.com/s/kWo5TG28Kck)
+1. connect the procuction facts_fhv_trips model with [Google Data Looker](https://lookerstudio.google.com/reporting/3c92be27-5fb5-4c15-a6d7-3596283f634e)
 2. Generate some visualizations
    
 **my answer: January ✅**
