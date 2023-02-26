@@ -63,54 +63,52 @@ You will need to complete "Visualising the data" videos, either using [google da
 Create a staging model for the fhv data for 2019 and do not add a deduplication step. Run it via the CLI without limits (is_test_run: false).
 Filter records with pickup time in year 2019.
 
-- 33244696
-- 43244696
-- 53244696
-- 63244696
+- ~~33244696~~
+- ✅ 43244696
+- ~~53244696~~
+- ~~63244696~~
 
 **steps:**
 
 1. Create a staging model for the fhv data for 2019 without a deduplication step und run a build job with dbt.
 
-2. Create a core model for the stg_fhv_tripdata joining with dim_zones.
-
+- adapt the schema.yml
+- build a stg_fhv model
 ```
-    {{ config(materialized='table') }}
-
-    with fhv_trips as (
-        select
-            stg_fhv_tripdata.*,
-            dim_zones.zone_id as pickup_zone_id,
-            dim_zones.borough as pickup_borough,
-            dim_zones.service_zone as pickup_service_zone
-        from {{ ref('stg_fhv_tripdata') }} as stg_fhv_tripdata
-        left join {{ ref('dim_zones') }} as dim_zones
-        on stg_fhv_tripdata.pickup_location_id = dim_zones.location_id
-    )
-
-    select
-        fhv_trips.*,
-        dim_zones.zone_id as dropoff_zone_id,
-        dim_zones.borough as dropoff_borough,
-        dim_zones.service_zone as dropoff_service_zone
-    from fhv_trips as fhv_trips
-    left join {{ ref('dim_zones') }} as dim_zones
-    on fhv_trips.dropoff_location_id = dim_zones.location_id
-
+dbt run --select stg_fhv_data --var 'is_test_run: false'
 ```
+
+- run BigQuery query to check the count of records in the model stg_fhv_tripdata
+```sql
+SELECT count(*)
+FROM `prefect-de-zoomcamp-376713.dbt_lreiber_models.stg_fhv_data`
+WHERE EXTRACT(YEAR from pickup_datetime) in (2019)
+```
+
+**my answer: 43244696 ✅**
 
 ### Question 4: 
 
 **What is the count of records in the model fact_fhv_trips after running all dependencies with the test run variable disabled (:false)?**  
 
-Create a core model for the stg_fhv_tripdata joining with dim_zones.
-Similar to what we've done in fact_trips, keep only records with known pickup and dropoff locations entries for pickup and dropoff locations. 
+Create a core model for the `stg_fhv_tripdata` joining with `dim_zones`.
+Similar to what we've done in `fact_trips`, keep only records with known pickup and dropoff locations entries for pickup and dropoff locations. 
 Run it via the CLI without limits (is_test_run: false) and filter records with pickup time in year 2019.
 
-- 12998722
-- 22998722
-- 32998722
-- 42998722
+- ~~12998722~~
+- **✅ 22998722**
+- ~~32998722~~
+- ~~42998722~~
+
+
+1. Create a core model for the `stg_fhv_tripdata` joining with dim_zones.
+
+```sql
+SELECT count(*)
+FROM `prefect-de-zoomcamp-376713.dbt_lreiber_models.fact_fhv_trips` 
+WHERE EXTRACT(YEAR from pickup_datetime) = 2019
+```
+
 
 ### Question 5: 
 
@@ -118,12 +116,17 @@ Run it via the CLI without limits (is_test_run: false) and filter records with p
 
 Create a dashboard with some tiles that you find interesting to explore the data. One tile should show the amount of trips per month, as done in the videos for fact_trips, based on the fact_fhv_trips table.
 
-- March
-- April
-- January
-- December
+- ~~March~~
+- ~~April~~
+- **✅ January**
+- ~~December~~
 
+**steps:**
 
+1. connect the procuction facts_fhv_trips model with [Google Data Looker](https://lookerstudio.google.com/s/kWo5TG28Kck)
+2. Generate some visualizations
+   
+**my answer: January ✅**
 
 ## Submitting the solutions
 
