@@ -128,14 +128,9 @@ Create a dashboard with some tiles that you find interesting to explore the data
    
 **my answer: January ✅**
 
-## Submitting the solutions
+## Public Learning
 
-* Form for submitting: https://forms.gle/6A94GPutZJTuT5Y16
-* You can submit your homework multiple times. In this case, only the last submission will be used. 
-
-Deadline: 25 February (Saturday), 22:00 CET
-
-
-## Solution
-
-We will publish the solution here
+- [Tweet about dbt YAML syntax](https://twitter.com/lisa_reiber/status/1628424594099929090?s=20)
+- [Tweet about YAML debugging](https://twitter.com/lisa_reiber/status/1629060305522229248?s=20)
+- [Tweet about .gitignore and csv files](https://twitter.com/lisa_reiber/status/1628748198801035270?s=20)
+- [Tweet about DevX via cats in vscode](https://twitter.com/lisa_reiber/status/1626595506695839754?s=20)
