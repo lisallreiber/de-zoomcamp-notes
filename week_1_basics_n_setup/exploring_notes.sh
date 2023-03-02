@@ -509,7 +509,7 @@ wget https://repo.anaconda.com/archive/Anaconda3-2022.10-Linux-x86_64.sh
 
 # step2: install docker
     # get list of packages
-    apt-get update
+    sudo apt-get update
     # install docker
     sudo apt-get install docker.io
 
