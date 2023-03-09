@@ -164,13 +164,53 @@ Load the zone lookup data into a temp view in Spark</br>
 
 Using the zone lookup data and the fhvhv June 2021 data, what is the name of the most frequent pickup location zone?
 
-- East Chelsea
-- Astoria
-- Union Sq
-- Crown Heights North
+- ~~East Chelsea~~
+- ~~Astoria~~
+- ~~Union Sq~~
+- **Crown Heights North ✅**
 
 **steps**
 
+- also see [jupyter notebook](homework.py)
+- 
+```python
+# load zone data
+zone_df = spark.read.csv('data/taxi_zone_lookup.csv', header=True)
+
+# create temp view
+zones_df.createOrReplaceTempView('zones')
+
+# join zone data with fhvhv data group by zone and count
+pickup_location_counts = spark. \
+    sql(
+        """
+            SELECT
+                pul.Zone AS pickup_zone,
+                COUNT(1)
+            FROM 
+                fhvhv fhv LEFT JOIN zones pul ON fhv.PULocationID = pul.LocationID
+            GROUP BY 
+                1
+            ORDER BY
+                2 DESC
+            LIMIT 5;
+        """). \
+    show()
+```
+
+**output:**
+
+    +-------------------+--------+
+    |        pickup_zone|count(1)|
+    +-------------------+--------+
+    |Crown Heights North|  231279|
+    |       East Village|  221244|
+    |        JFK Airport|  188867|
+    |     Bushwick South|  187929|
+    |      East New York|  186780|
+    +-------------------+--------+
+
+**answer: Crown Heights North ✅**
 
 ## Submitting the solutions
 
