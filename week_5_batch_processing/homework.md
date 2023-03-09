@@ -15,12 +15,25 @@ For this homework we will be using the FHVHV 2021-06 data found here. [FHVHV Dat
 - Execute spark.version.
 
 What's the output?
-- 3.3.2
-- 2.1.4
-- 1.2.3
-- 5.4
-</br></br>
+- **3.3.2 ✅**
+- ~~2.1.4~~
+- ~~1.2.3~~
+- ~~5.4~~
 
+**steps:**
+
+```bash
+# login to VM
+ssh de-zoomcamp
+
+# start spark
+spark-shell
+
+# view version
+spark.version
+```
+
+**answer: 3.3.2 ✅**
 
 ### Question 2: 
 
