@@ -16,8 +16,7 @@ https://github.com/DataTalksClub/data-engineering-zoomcamp/blob/main/cohorts/202
 
 - Yellow taxi data - Years 2019 and 2020
 - Green taxi data - Years 2019 and 2020
-- fhv data 
- - Year 2019.
+- fhv data - Year 2019.
 
 ### Question 1:
 
@@ -25,10 +24,21 @@ What is the distribution between vendor id filtering by years 2019 and 2020 data
 
 You will need to run PipeRider and check the report
 
-* 70.1/29.6/0.5
-* 60.1/39.5/0.4
-* 90.2/9.5/0.3
-* 80.1/19.7/0.2
+* ~~70.1/29.6/0.5~~
+* ✅ 60.1/39.5/0.4
+* ~~90.2/9.5/0.3~~
+* ~~80.1/19.7/0.2~~
+
+**steps:**
+
+```bash
+poetry run piperider run
+```
+
+check out the report in [.piperider/outputs/latest](../ny_taxi_rides_project/.piperider/outputs/dev-20230320213559/index.html)
+
+**answer: ✅ 57.4/42.1**
+
 
 ### Question 2:
 
@@ -36,11 +46,15 @@ What is the composition of total amount (positive/zero/negative) filtering by ye
 
 You will need to run PipeRider and check the report
 
-
 * 51.4M/15K/48.6K
 * 21.4M/5K/248.6K
-* 61.4M/25K/148.6K
+* ✅ 61.4M/25K/148.6K
 * 81.4M/35K/14.6K
+
+check out the report in [.piperider/outputs/latest](../ny_taxi_rides_project/.piperider/outputs/dev-20230320213559/index.html)
+
+**answer: ✅ 55.1M/12.6K/160.8K**
+
 
 ### Question 3:
 
@@ -48,13 +62,14 @@ What is the numeric statistics (average/standard deviation/min/max/sum) of trip 
 
 You will need to run PipeRider and check the report
 
+* ~~1.95/35.43/0/16.3K/151.5M~~
+* ~~3.95/25.43/23.88/267.3K/281.5M~~
+* ~~5.95/75.43/-63.88/67.3K/81.5M~~
+* **✅ 2.95/35.43/-23.88/167.3K/181.5M**
 
-* 1.95/35.43/0/16.3K/151.5M
-* 3.95/25.43/23.88/267.3K/281.5M
-* 5.95/75.43/-63.88/67.3K/81.5M
-* 2.95/35.43/-23.88/167.3K/181.5M
+check out the report in [.piperider/outputs/latest](../ny_taxi_rides_project/.piperider/outputs/dev-20230320213559/index.html)
 
-
+**answer: ✅ 2.97/29.59/-22.18/167.3K/164.2M**
 
 ## Submitting the solutions
 
