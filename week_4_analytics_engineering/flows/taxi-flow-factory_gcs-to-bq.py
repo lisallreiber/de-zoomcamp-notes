@@ -26,7 +26,7 @@ def write_bq(df: pd.DataFrame, dest_table: str):
 
     df.to_gbq(
         destination_table=dest_table,
-        project_id="prefect-de-zoomcamp-376713",
+        project_id="dtc-de-375708",
         credentials=gcp_credentials_block.get_credentials_from_service_account(),
         chunksize=500_000,
         if_exists="append",
