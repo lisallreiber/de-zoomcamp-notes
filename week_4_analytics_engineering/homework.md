@@ -81,7 +81,7 @@ dbt run --select stg_fhv_data --var 'is_test_run: false'
 - run BigQuery query to check the count of records in the model stg_fhv_tripdata
 ```sql
 SELECT count(*)
-FROM `prefect-de-zoomcamp-376713.dbt_lreiber_models.stg_fhv_data`
+FROM `dtc-de-375708.dbt_lreiber_models.stg_fhv_data`
 WHERE EXTRACT(YEAR from pickup_datetime) in (2019)
 ```
 
@@ -105,7 +105,7 @@ Run it via the CLI without limits (is_test_run: false) and filter records with p
 
 ```sql
 SELECT count(*)
-FROM `prefect-de-zoomcamp-376713.dbt_lreiber_models.fact_fhv_trips` 
+FROM `dtc-de-375708.dbt_lreiber_models.fact_fhv_trips` 
 WHERE EXTRACT(YEAR from pickup_datetime) = 2019
 ```
 
