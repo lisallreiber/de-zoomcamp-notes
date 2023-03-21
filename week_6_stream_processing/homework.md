@@ -4,60 +4,53 @@ In this homework, there will be two sections, the first session focus on theoret
 and streaming concepts and the second session asks to create a small streaming application using preferred 
 programming language (Python or Java).
 
-### Question 1: 
+### Question 1: Correct Statements about Kafka
+*Please select all that apply*
 
-**Please select the statements that are correct**
+- **✅ Kafka Node is responsible to store topics**
+- **✅ Zookeeper is removed from Kafka cluster starting from version 4.0**
+- ~~Retention configuration ensures the messages not get lost over specific period of time.~~
+- **✅ Group-Id ensures the messages are distributed to associated consumers**
 
-- Kafka Node is responsible to store topics
-- Zookeeper is removed from Kafka cluster starting from version 4.0
-- Retention configuration ensures the messages not get lost over specific period of time.
-- Group-Id ensures the messages are distributed to associated consumers
+### Question 2: Kafka concepts that support reliability and availability
 
+*Please select all that apply*
 
-### Question 2: 
-
-**Please select the Kafka concepts that support reliability and availability**
-
-- Topic Replication
-- Topic Paritioning
-- Consumer Group Id
-- Ack All
+- **✅ Topic Replication**
+- ~~Topic Paritioning~~
+- ~~Consumer Group Id~~
+- **✅ Ack All**
 
 
+### Question 3: Kafka concepts that support scaling
 
-### Question 3: 
+*Please select all that apply*
 
-**Please select the Kafka concepts that support scaling**  
+- ~~Topic Replication~~
+- **✅ Topic Paritioning**
+- **✅ Consumer Group Id**
+- ~~Ack All~~
+  
 
-- Topic Replication
-- Topic Paritioning
-- Consumer Group Id
-- Ack All
+### Question 4: Attributes that are good candidates for partitioning key
+**Please select all that apply and consider cardinality of the field you have selected and scaling aspects of your application*
 
-
-### Question 4: 
-
-**Please select the attributes that are good candidates for partitioning key. 
-Consider cardinality of the field you have selected and scaling aspects of your application**  
-
-- payment_type
-- vendor_id
-- passenger_count
-- total_amount
-- tpep_pickup_datetime
-- tpep_dropoff_datetime
+- **✅ payment_type**
+- **✅ vendor_id**
+- **✅ passenger_count**
+- ~~total_amount~~
+- ~~tpep_pickup_datetime~~
+- ~~tpep_dropoff_datetime~~
 
 
-### Question 5: 
+### Question 5: Which configurations below should be provided for Kafka Consumer but not needed for Kafka Producer
 
-**Which configurations below should be provided for Kafka Consumer but not needed for Kafka Producer**
-
-- Deserializer Configuration
-- Topics Subscription
-- Bootstrap Server
-- Group-Id
-- Offset
-- Cluster Key and Cluster-Secret
+- ✅ Deserializer Configuration
+- ✅ Topics Subscription
+- ~~Bootstrap Server~~
+- ✅ Group-Id
+- ✅ Offset
+- ~~Cluster Key and Cluster-Secret~~
 
 
 ### Question 6:
