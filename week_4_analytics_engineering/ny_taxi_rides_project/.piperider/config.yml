@@ -4,10 +4,10 @@ dbt:
   # tag: 'piperider'
 
 profiler:
-#   table:
+  table:
 #     # the maximum row count to profile. (Default unlimited)
 #     limit: 1000000
-#     duplicateRows: false
+    duplicateRows: false
 
 telemetry:
-  id: 57b69b8abdda4b7ca40e5ff8cde698bd
+  id: b6f01498e09a413eba90c8c3097e1baf
